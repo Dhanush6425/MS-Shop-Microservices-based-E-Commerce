@@ -1,12 +1,9 @@
+// routes/productRoutes.js
 const express = require("express");
-const { getProducts, addProduct } = require("../controllers/productController");
-const authMiddleware = require("../middleware/authMiddleware");
 const router = express.Router();
+const { getProducts, addProduct } = require("../controllers/productController");
 
-// Public route
 router.get("/", getProducts);
-
-// Protected route
-router.post("/", authMiddleware, addProduct);
+router.post("/", addProduct);
 
 module.exports = router;

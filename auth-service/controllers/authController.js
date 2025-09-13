@@ -1,5 +1,4 @@
 const db = require("../config/db");
-const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // REGISTER
@@ -10,18 +9,22 @@ exports.register = (req, res) => {
     return res.status(400).json({ success: false, message: "Missing required fields" });
   }
 
-  const hashedPassword = bcrypt.hashSync(password, 10);
-
   db.query(
     "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
-    [name, email, hashedPassword],
+    [name, email, password], // <-- directly store password
     (err, result) => {
       if (err) {
-        console.error("❌ DB Insert Error:", err); // Logs full SQL error
+        console.error("❌ DB Insert Error:", err);
+        if (err.code === 'ER_DUP_ENTRY') {
+          return res.status(400).json({
+            success: false,
+            message: "This email is already registered."
+          });
+        }
         return res.status(400).json({
           success: false,
           message: "User registration failed",
-          error: err.sqlMessage // <-- Shows DB error in response
+          error: err.sqlMessage
         });
       }
 
@@ -34,7 +37,6 @@ exports.register = (req, res) => {
     }
   );
 };
-
 // LOGIN
 exports.login = (req, res) => {
   const { email, password } = req.body || {};
@@ -54,9 +56,9 @@ exports.login = (req, res) => {
     }
 
     const user = results[0];
-    const isMatch = bcrypt.compareSync(password, user.password);
 
-    if (!isMatch) {
+    // Directly compare plain password
+    if (password !== user.password) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
 

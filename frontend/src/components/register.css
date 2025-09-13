@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #1d2671, #c33764);
+}
+
+.register-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 40px;
+  width: 380px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  backdrop-filter: blur(12px);
+  color: white;
+}
+
+.register-box h2 {
+  margin-bottom: 25px;
+  font-size: 26px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-shadow: 0px 0px 8px #fff;
+}
+
+.register-box input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.register-box input::placeholder {
+  color: #ddd;
+}
+
+.register-box input:focus {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 10px #fff;
+}
+
+.register-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #ff4b2b, #ff416c);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.register-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #fff;
+}
+
+.login-text {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #eee;
+}
+
+.login-text a {
+  color: #ffccff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.login-text a:hover {
+  text-shadow: 0 0 10px #fff;
+}

@@ -1,0 +1,15 @@
+.app-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+h1 {
+  color: #fff;
+}
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: linear-gradient(to right, #4b0082, #c71585, #ff416c);
+  font-family: "Poppins", sans-serif;
+}
