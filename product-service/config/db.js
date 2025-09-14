@@ -1,20 +1,19 @@
+// config/db.js
 const mysql = require("mysql2");
-require("dotenv").config();
 
-const db = mysql.createPool({
-  host: "crossover.proxy.rlwy.net",
-  port: 37319,
-  user: "root",
-  password: "cdOzBzXPgOYIIcCBvBzfWStquKDTKvrI",
-  database: "railway"
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT || 3306,
 });
 
-db.getConnection((err, connection) => {
+db.connect((err) => {
   if (err) {
-    console.error("❌ Product DB Connection Error:", err);
+    console.error("❌ Database connection failed:", err);
   } else {
-    console.log("✅ Connected to Product DB");
-    connection.release();
+    console.log("✅ Connected to MySQL Database");
   }
 });
 
